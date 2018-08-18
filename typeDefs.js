@@ -19,9 +19,10 @@ const typeDefs = `
   # the schema allows the following query:
   type Query {
     books: [Book]
-    searchBooks(title: String!, orderBy: String, asc: Boolean, offset: Int, limit: Int): [Book]
     getBook(id: Int!): Book
-    author(id: Int!): Author
+    searchBooks(title: String!, orderBy: String, asc: Boolean, offset: Int, limit: Int): [Book]
+    getAuthor(id: Int!): Author
+    searchAuthors(name: String!, orderBy: String, asc: Boolean, offset: Int, limit: Int): [Author]
   }
 
   # this schema allows the following mutation:

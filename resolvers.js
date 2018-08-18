@@ -16,8 +16,11 @@ const resolvers = {
     searchBooks: (_, { title, orderBy, asc, offset = 0, limit = 10 }) => {
       return _orderBy(filter(books, (book) => book.title.toLowerCase().indexOf(title.toLowerCase()) !== -1), [...singleOrArray(orderBy)], [asc ? 'asc' : 'desc']).slice(offset, offset + limit)
     },
+    searchAuthors: (_, { name, orderBy, asc, offset = 0, limit = 10 }) => {
+      return _orderBy(filter(authors, (book) => `${book.firstName}${book.lastName}`.toLowerCase().indexOf(name.toLowerCase()) !== -1), [...singleOrArray(orderBy)], [asc ? 'asc' : 'desc']).slice(offset, offset + limit)
+    },
     getBook: (_, { id }) => find(books, { id }),
-    author: (_, { id }) => find(authors, { id }),
+    getAuthor: (_, { id }) => find(authors, { id }),
   },
   
   Mutation: {
