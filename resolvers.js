@@ -14,10 +14,6 @@ const resolvers = {
   Query: {
     books: () => books,
     searchBooks: (_, { title, orderBy, asc, offset = 0, limit = 10 }) => {
-      console.log('orderBy', {
-        orderBy,
-        asc,
-      })
       return _orderBy(filter(books, (book) => book.title.toLowerCase().indexOf(title.toLowerCase()) !== -1), [...singleOrArray(orderBy)], [asc ? 'asc' : 'desc']).slice(offset, offset + limit)
     },
     getBook: (_, { id }) => find(books, { id }),
