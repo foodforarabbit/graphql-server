@@ -24,12 +24,20 @@ const resolvers = {
   },
   
   Mutation: {
-    upvoteBook: (_, { bookId }) => {
-      const book = find(books, { id: bookId });
+    upvoteBook: (_, { id }) => {
+      const book = find(books, { id });
       if (!book) {
-        throw new Error(`Couldn't find book with id ${bookId}`);
+        throw new Error(`Couldn't find book with id ${id}`);
       }
       book.votes += 1;
+      return book;
+    },
+    downvoteBook: (_, { id }) => {
+      const book = find(books, { id });
+      if (!book) {
+        throw new Error(`Couldn't find book with id ${id}`);
+      }
+      book.votes -= 1;
       return book;
     },
   },

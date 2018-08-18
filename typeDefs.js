@@ -28,7 +28,10 @@ const typeDefs = `
   # this schema allows the following mutation:
   type Mutation {
     upvoteBook (
-      bookId: Int!
+      id: Int!
+    ): Book
+    downvoteBook (
+      id: Int!
     ): Book
   }
 `;
